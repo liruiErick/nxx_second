@@ -1,0 +1,231 @@
+/*********************************** #tab_switch 模块样式 ************************************/
+.tab-switch .switch-btn {
+    padding: 10px 0;
+}
+
+.tab-switch .switch-btn a {
+    position: relative;
+    margin-right: 15px;
+    padding: 0 10px;
+    width: 100px;
+    line-height: 36px;
+    text-align: center;
+    border-radius: 3px;
+    background: rgba(75, 119, 190, .9);
+    color: #fcfcfc;
+    overflow: hidden;
+}
+
+.tab-switch .switch-btn a.active {
+    background: rgba(10, 152, 222, .95);
+}
+
+.tab-switch .switch-btn a:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 200px;
+    background: #000;
+    transform-origin: 0 0;
+    transform: translateX(calc(20% - 10px)) translateY(100px) rotate(-45deg);
+    transition: .3s;
+    z-index: -1;
+}
+
+.tab-switch .switch-btn a:hover:after {
+    left: -10px;
+    transform: translateX(calc(20% - 120px)) translateY(100px) rotate(-45deg);
+    transition: .3s;
+}
+
+.tab-switch .switch-box {
+    position: relative;
+    padding: 3px;
+    height: 495px;
+    background: #f5f5f5;
+}
+
+.tab-switch .switch-box .tab-box {
+    position: absolute;
+    width: 1194px;
+    /*height: 500px;*/
+    background: #fcfcfc;
+    opacity: 0;
+    /*visibility: hidden;*/
+    display: none;
+}
+
+.tab-switch .switch-box .tab-box.show {
+    opacity: 1;
+    /*visibility: visible;*/
+    display: block;
+}
+
+/*********************************** .rich-new-list 模块样式 ************************************/
+.rich-new-list {
+    padding: 5px 0;
+    width: 100%;
+    /*height: 100px;*/
+    border-bottom: 1px solid #f0f0f0;
+    transition: .3s;
+}
+
+.rich-new-list:last-child {
+    border: 0;
+}
+
+.rich-new-list:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.rich-new-list:hover {
+    background: #fafafa;
+    transition: .3s;
+}
+
+.rich-new-list a.img-box {
+    float: left;
+    width: 20%;
+}
+
+.rich-new-list a img {
+    float: left;
+    width: 100%;
+    height: 100%;
+}
+
+.rich-new-list .new-content-box {
+    float: left;
+    width: 80%;
+    /*height: 100%;*/
+}
+
+.rich-new-list .new-content-box a.new-title {
+    float: left;
+    min-width: 300px;
+    max-width: 590px;
+    height: 34px;
+    line-height: 34px;
+    padding: 0 15px;
+    font-size: 1.2rem;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    color: #666;
+    transition: .2s;
+}
+
+.rich-new-list .new-content-box a.new-title:hover {
+    color: #000;
+    transition: .2s;
+}
+
+.rich-new-list .new-content-box .new-fun-box {
+    float: left;
+    padding: 10px 0;
+    width: 100%;
+    height: 46px;
+    /*background: #ccc;*/
+}
+
+/******* .rich-new-list 自适应样式区 ********/
+section.sec2 .rich-new-list a.img-box {
+    height: 100px;
+}
+
+section.sec4 a.img-box,
+section.sec5 a.img-box {
+    height: 150px;
+}
+
+/*********************************tab-nav*******************************************/
+ul.tab-nav {
+    margin: 0 auto;
+}
+
+ul.tab-nav li {
+    float: left;
+    width: 60px;
+    height: 26px;
+    margin-right: 2px;
+    line-height: 26px;
+    text-align: center;
+    color: #fff;
+    font-size: 12px;
+    border: 1px solid #60c2e8;
+    background: #60c2e8;
+    cursor: pointer;
+    outline: none;
+}
+
+ul.tab-nav li.active {
+    border: 1px solid #337ab7;
+    background: #337ab7;
+    cursor: default;
+}
+
+ul.tab-nav li:hover {
+    background: #286090;
+    border: 1px solid #fff;
+}
+
+ul.tab-nav li.active:hover {
+    background: #337ab7;
+    border: 1px solid #337ab7;
+}
+
+div.tab-content {
+    padding: 8px 5px 7px;
+    background: #337ab7;
+}
+
+div.tab-content > div {
+    display: none;
+}
+
+div.tab-content > div.show {
+    display: block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

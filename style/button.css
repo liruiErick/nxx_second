@@ -1,0 +1,107 @@
+/********************* [more]按钮 *********************/
+.com-more-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    padding: 0 5px;
+    line-height: 18px;
+    font-size: .8rem;
+    color: #d4237a;
+    border: 1px solid #d4237a;
+    border-radius: 2px;
+    transition: .3s;
+}
+
+.com-more-btn:hover {
+    color: #fcfcfc;
+    border: 1px solid #00ABFF;
+    background: #00ABFF;
+    transition: .3s;
+}
+
+.com-more-btn .icon-more {
+    display: inline-block;
+    position: relative;
+    margin: 0 3px;
+    top: 1px;
+    left: 3px;
+    width: 12px;
+    height: 12px;
+    background: url("../images/icon_more.png") no-repeat;
+    background-size: cover;
+}
+
+/*icon按钮*/
+.con-btn {
+    width: 20px;
+    height: 20px;
+    /*padding: 4px;*/
+    margin: 6px 20px 6px 6px;
+    line-height: 32px;
+    font-size: .7rem;
+    text-align: center;
+    color: #fcfcfc;
+    background: #f0ad4e;
+}
+
+.con-btn.last {
+    margin-right: 5px;
+}
+
+.icon-set {
+    background: url("../images/icon_selftab.png") no-repeat;
+    background-size: cover;
+}
+
+.icon-share {
+    background: url("../images/icon_share.png") no-repeat;
+    background-size: cover;
+}
+
+.icon-collection {
+    background: url("../images/icon_collection.png") no-repeat;
+    background-size: cover;
+}
+
+.icon-collection.active {
+    background: url("../images/icon_collection_active.png") no-repeat;
+    background-size: cover;
+}
+
+.icon-download {
+    background: url("../images/icon_download.png") no-repeat;
+    background-size: cover;
+}
+
+.icon-like {
+    background: url("../images/icon_like.png") no-repeat;
+    background-size: cover;
+}
+
+.icon-like.active {
+    background: url("../images/icon_like_active.png") no-repeat;
+    background-size: cover;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
