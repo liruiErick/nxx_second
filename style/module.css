@@ -119,6 +119,11 @@
     transition: .2s;
 }
 
+.rich-new-list .new-content-box a.new-title.more-width {
+    max-width: 850px;
+    color: #333;
+}
+
 .rich-new-list .new-content-box a.new-title:hover {
     color: #000;
     transition: .2s;

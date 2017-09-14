@@ -80,7 +80,7 @@
                                 b_s = hj.siblings(this),
                                 t_s = will_show_tab ? hj.siblings(will_show_tab) : [];
 
-                            this.setAttribute('class', this_class + ' active');
+                            this.setAttribute('class', ((this_class) ? this_class + ' ' : '') + 'active');
                             hj.removeClass(b_s, 'active');
 
                             if (this_show_class) {

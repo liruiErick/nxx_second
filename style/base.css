@@ -211,8 +211,13 @@ p.no-msg {
 
 /*********************************** footer ************************************/
 footer {
-    height: 200px;
-    background: #ccc;
+    height: 35px;
+    padding: 20px 0;
+    line-height: 35px;
+    background: #0066B4;
+    text-align: center;
+    font-size: 13px;
+    color: #c8cdd2;
 }
 
 /*********************************** 标题背景 ************************************/
@@ -237,6 +242,7 @@ footer {
 
 .big-title span.title {
     padding-left: 15px;
+    color: #4d555d;
 }
 
 .big-title.hot-point {

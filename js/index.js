@@ -39,6 +39,24 @@
     HjRouter.key = '!';
     HjRouter.init();
 
+
+    window.hjUtils = {
+        topSearchBindClick: function () {
+
+            // TODO: 点击搜索按钮抓取信息
+
+            var box = $('#color-switch');
+
+            box.find('.ser-tab a').click(function () {
+                box.attr('class', $(this).data('color'));
+                $(this).addClass('checked').siblings().removeClass('checked');
+            })
+
+        }
+
+
+    };
+
 })();
 
 

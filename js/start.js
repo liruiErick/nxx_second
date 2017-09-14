@@ -12,11 +12,11 @@
 
         // console.log(hashData);
 
-        hj('.tab-switch, .switch-card').tabSwitch();
-
         // do something
 
+        hj('.tab-switch, .switch-card').tabSwitch();
 
+        hjUtils.topSearchBindClick()
 
     }
 

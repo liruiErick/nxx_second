@@ -5,10 +5,10 @@
                 <form class="clear" id="searchForm">
                     <div class="search-tab">
                         <i class="icon" data-bl="switch"></i>
-                        <div class="check">搜索</div>
+                        <div class="check">资源</div>
                         <ul class="tabs">
-                            <li><label>内容</label></li>
-                            <li><label>人名</label></li>
+                            <li class="clear"><label>问题</label></li>
+                            <li class="clear"><label>用户</label></li>
                         </ul>
                         <div class="txt-serach"><input class="left txt autoSuggest" name="keyword" autocomplete="off"
                                                        placeholder="请输入内容、人名" id="keyword-box">
@@ -16,16 +16,16 @@
                                 <ul class="type" data-title="类型">
                                     <li class="hot-name">热门搜索</li>
                                     <div class="list">
-                                        <li><a href="#">物联网</a></li>
-                                        <li><a href="#">人工智能</a></li>
+                                        <li class="clear"><a href="#">物联网</a></li>
+                                        <li class="clear"><a href="#">人工智能</a></li>
                                     </div>
                                     <li class="del">清除历史记录</li>
                                 </ul>
                                 <ul class="type" data-title="时间">
                                     <li class="hot-name">热门搜索</li>
                                     <div class="list">
-                                        <li><a href="#">2017-1-1~至今</a></li>
-                                        <li><a href="#">2016-1-1~2016-12-31</a></li>
+                                        <li class="clear"><a href="#">2017-1-1~至今</a></li>
+                                        <li class="clear"><a href="#">2016-1-1~2016-12-31</a></li>
                                     </div>
                                     <li class="del">清除历史记录</li>
                                 </ul>
@@ -461,7 +461,7 @@
             </div>
         </div>
         <div class="assist-content clear fr">
-            <div class="person clear">
+            <div class="content-person clear">
                 <div class="nav clear">
                     <span class="active">共享之星</span>
                     <span>解题达人</span>
@@ -469,51 +469,158 @@
                 <div class="content clear">
                     <div class="box clear">
                         <ul class="clear">
-                            <li>
-                                <!--<span class="time-line"></span>-->
-                                <div class="box-content clear">
-                                    <!--<h5 class="content-heading">第一名</h5>-->
-                                    <!--<span class="content-body clear">
-                                        <span class="content-img">1</span>
-                                        <span class="content-txt">
-                                            <span class="content-name">刘宇</span>|<span class="degree">教师</span>
-                                            <img src="" alt="" class="author-log">
+                            <li class="clear">
+                                <!--时间轴-->
+                                <div class="time-content-wrap">
+                                    <span class="time-line"></span>
+                                    <div class="box-content clear">
+                                        <h5 class="content-heading">第一名</h5>
+                                        <span class="content-body clear">
+                                        <span class="content-img"></span>
+                                        <span class="content-txt-wrap">
+                                            <span class="content-txt">
+                                                <span class="content-name">刘宇</span>|<span class="degree">信息化</span>
+                                                <!--<img src="" alt="" class="author-log">-->
+                                            </span>
+                                            <span class="share-content">共享数<span class="sharing-times">30</span>次</span>
                                         </span>
                                     </span>
-                                    <span class="content-footer"></span>-->
-                                    <span class="content-img">1</span>
+                                        <!--横向布局-->
+                                        <!--<span class="content-img">1</span>
+                                        <span class="content-txt">
+                                                <span class="content-name">刘宇</span>
+                                                <span class="degree">信息化</span>
+                                                <span>共享数<span class="sharing-times">30</span>次</span>
+                                        </span>-->
+                                    </div>
+                                </div>
+                                <div class="time-content-wrap">
+                                    <span class="time-line"></span>
+                                    <div class="box-content clear">
+                                        <h5 class="content-heading">第二名</h5>
+                                        <span class="content-body clear">
+                                        <span class="content-img"></span>
+                                        <span class="content-txt-wrap">
+                                            <span class="content-txt">
+                                                <span class="content-name">张勇</span>|<span class="degree">自动化</span>
+                                                <!--<img src="" alt="" class="author-log">-->
+                                            </span>
+                                            <span class="share-content">共享数<span class="sharing-times">26</span>次</span>
+                                        </span>
+                                    </span>
+                                        <!--横向布局-->
+                                        <!--<span class="content-img">1</span>
+                                        <span class="content-txt">
+                                                <span class="content-name">刘宇</span>
+                                                <span class="degree">信息化</span>
+                                                <span>共享数<span class="sharing-times">30</span>次</span>
+                                        </span>-->
+                                    </div>
+                                </div>
+                                <div class="time-content-wrap">
+                                    <span class="time-line"></span>
+                                    <div class="box-content clear">
+                                        <h5 class="content-heading">第三名</h5>
+                                        <span class="content-body clear">
+                                        <span class="content-img"></span>
+                                        <span class="content-txt-wrap">
+                                            <span class="content-txt">
+                                                <span class="content-name">天雨</span>|<span class="degree">水利工程</span>
+                                                <!--<img src="" alt="" class="author-log">-->
+                                            </span>
+                                            <span class="share-content">共享数<span class="sharing-times">17</span>次</span>
+                                        </span>
+                                    </span>
+                                        <!--横向布局-->
+                                        <!--<span class="content-img">1</span>
+                                        <span class="content-txt">
+                                                <span class="content-name">刘宇</span>
+                                                <span class="degree">信息化</span>
+                                                <span>共享数<span class="sharing-times">30</span>次</span>
+                                        </span>-->
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="clear">
+                                <!--时间轴-->
+                                <span class="time-line"></span>
+                                <div class="box-content clear">
+                                    <h5 class="content-heading">第一名</h5>
+                                    <span class="content-body clear">
+                                        <span class="content-img"></span>
+                                        <span class="content-txt-wrap">
+                                            <span class="content-txt">
+                                                <span class="content-name">刘宇</span>|<span class="degree">信息化</span>
+                                                <!--<img src="" alt="" class="author-log">-->
+                                            </span>
+                                            <span class="share-content">共享数<span class="sharing-times">30</span>次</span>
+                                        </span>
+                                    </span>
+                                    <!--横向布局-->
+                                    <!--<span class="content-img">1</span>
                                     <span class="content-txt">
                                             <span class="content-name">刘宇</span>
                                             <span class="degree">信息化</span>
                                             <span>共享数<span class="sharing-times">30</span>次</span>
-                                    </span>
-
-                                    </div>
-                            </li>
-                            <li>
-                                <div class="box-content clear">
-                                    <span class="content-img">2</span>
-                                    <span class="content-txt">
-                                            <span class="content-name">杨洋</span>
-                                            <span class="degree">自动化</span>
-                                            <span>共享数<span class="sharing-times">34</span>次</span>
-                                    </span>
-
+                                    </span>-->
                                 </div>
                             </li>
+                            <!--<li>
+                                <ul>
+                                    <li class="clear">
+                                        <span class="time-line"></span>
+                                        <div class="box-content clear">
+                                            <h5 class="content-heading">第二名</h5>
+                                            <span class="content-body clear">
+                                        <span class="content-img"></span>
+                                        <span class="content-txt-wrap">
+                                            <span class="content-txt">
+                                                <span class="content-name">杨洋</span>|<span class="degree">自动化</span>
+                                                &lt;!&ndash;<img src="" alt="" class="author-log">&ndash;&gt;
+                                            </span>
+                                            <span class="share-content">共享数<span class="sharing-times">26</span>次</span>
+                                        </span>
+                                    </span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>-->
                         </ul>
-                        <!--<ul class="clear">
-                            <li>
-                                <span class="time-line"></span>
-                                <span class="box-content">感觉热工金额日哦苹果加热</span>
-                            </li>
-                            <li>
-                                <span class="time-line"></span>
-                                <span class="box-content">感觉热工金额日哦苹果加热</span>
-                            </li>
-                        </ul>-->
                     </div>
                 </div>
+            </div>
+            <div class="content-ask-asn clear">
+                <div class="nav clear">
+                    <span class="item active">我要求助<span class="help">13</span></span>
+                    <span class="item">我的求助<span class="ask">11</span></span>
+                    <span class="item">我的回答<span class="ans">12</span></span>
+                </div>
+                <div class="content clear">
+                    <div class="box clear">
+                        <div class="title">最新求助</div>
+                        <ul class="clear">
+                            <li>
+                                <span class="ask-type">【求助】【领域标签】</span>
+                                <!--<span class="ask-content">流觞曲水</span>-->
+                                <button class="ask-mes">留言Ta</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="content-type clear">
+                <ul class="tab_menu tab_menu3 fl clear tab-cursor">
+                    <li class="btn1"><span>图书</span></li>
+                    <li class="btn2"><span>视频</span></li>
+                    <li class="btn3"><span>演示文档</span></li>
+                    <li class="btn4"><span>软件</span></li>
+                    <li class="btn5"><span>软件</span></li>
+                    <li class="btn6 current"><span>表格</span></li>
+                    <li class="btn7"><span>论文</span></li>
+                    <li class="btn8"><span>音频</span></li>
+                    <li class="btn9"><span>报告</span></li>
+                    <li class="btn10"><span>图片</span></li>
+                </ul>
             </div>
         </div>
     </div>
