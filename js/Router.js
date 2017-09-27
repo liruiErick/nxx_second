@@ -42,7 +42,7 @@
                 self.urlChange()
             });
             window.addEventListener('hashchange', function () {
-                // console.log('hashchange');
+                // console.log('hash-change');
                 self.urlChange()
             });
             // 异步引入的js通过回调传参
@@ -131,8 +131,7 @@
             xhr.send(null);
 
             function doResponse(xhr) {
-                var tmp = xhr.responseText;
-                area.innerHTML = tmp;
+                area.innerHTML = xhr.responseText;
                 callback()
             }
 

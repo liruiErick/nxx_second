@@ -1,9 +1,11 @@
-/*********************************** #tab_switch 模块样式 ************************************/
-.tab-switch .switch-btn {
+/*********************************** (1)(2)模块公共样式 ************************************/
+.tab-switch .switch-btn,
+.tab-body .tab-btn {
     padding: 10px 0;
 }
 
-.tab-switch .switch-btn a {
+.tab-switch .switch-btn a,
+.tab-body .tab-btn a {
     position: relative;
     margin-right: 15px;
     padding: 0 10px;
@@ -16,11 +18,13 @@
     overflow: hidden;
 }
 
-.tab-switch .switch-btn a.active {
+.tab-switch .switch-btn a.active,
+.tab-body .tab-btn a.active {
     background: rgba(10, 152, 222, .95);
 }
 
-.tab-switch .switch-btn a:after {
+.tab-switch .switch-btn a:after,
+.tab-body .tab-btn a:after {
     content: '';
     position: absolute;
     top: 0;
@@ -34,12 +38,14 @@
     z-index: -1;
 }
 
-.tab-switch .switch-btn a:hover:after {
+.tab-switch .switch-btn a:hover:after,
+.tab-body .tab-btn a:hover:after {
     left: -10px;
     transform: translateX(calc(20% - 120px)) translateY(100px) rotate(-45deg);
     transition: .3s;
 }
 
+/*********************************** (1).tab_switch 模块样式 ************************************/
 .tab-switch .switch-box {
     position: relative;
     padding: 3px;
@@ -63,17 +69,50 @@
     display: block;
 }
 
+/*********************************** (2)按选择定义内容的常规非切换模块样式 ************************************/
+.tab-body .tab-content-box {
+    position: relative;
+    padding: 3px;
+    height: 495px;
+    background: #f5f5f5;
+}
+
+.tab-body .tab-content-box .tab-box {
+    width: 1194px;
+    /*height: 500px;*/
+    background: #fcfcfc;
+}
+
 /*********************************** .rich-new-list 模块样式 ************************************/
 .rich-new-list {
     padding: 5px 0;
     width: 100%;
     /*height: 100px;*/
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px dashed #ccc;
+    box-sizing: border-box;
+    transition: .3s;
+}
+
+.rich-new-list.shadow-box {
+    margin: 15px 0;
+    padding: 10px;
+    border: 1px solid #efefef;
+    /*border: 0;*/
+    background: #fff;
+}
+
+.rich-new-list.shadow-box:hover {
+    /*box-shadow: 1px 1px 10px 1px rgba(0,0,0,.1);*/
+    box-shadow: 2px 2px 10px rgba(51, 51, 51, .1);
     transition: .3s;
 }
 
 .rich-new-list:last-child {
     border: 0;
+}
+
+.rich-new-list.shadow-box:last-child {
+    border: 1px solid #efefef;
 }
 
 .rich-new-list:after {
@@ -82,10 +121,10 @@
     clear: both;
 }
 
-.rich-new-list:hover {
-    background: #fafafa;
-    transition: .3s;
-}
+/*.rich-new-list:hover {*/
+/*background: #fafafa;*/
+/*transition: .3s;*/
+/*}*/
 
 .rich-new-list a.img-box {
     float: left;
@@ -111,11 +150,12 @@
     height: 34px;
     line-height: 34px;
     padding: 0 15px;
-    font-size: 1.2rem;
+    font-size: 18px;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
-    color: #666;
+    /*color: #698EB9;*/
+    /*font-weight: bold;*/
     transition: .2s;
 }
 
@@ -139,12 +179,16 @@
 
 /******* .rich-new-list 自适应样式区 ********/
 section.sec2 .rich-new-list a.img-box {
-    height: 100px;
+    margin: 5px 0 0 10px;
+    width: 120px;
+    height: 90px;
 }
 
 section.sec4 a.img-box,
 section.sec5 a.img-box {
-    height: 150px;
+    margin: 10px 0 0 10px;
+    width: 150px;
+    height: 120px;
 }
 
 /*********************************tab-nav*******************************************/
@@ -194,6 +238,226 @@ div.tab-content > div {
 
 div.tab-content > div.show {
     display: block;
+}
+
+/*********************************登录注册模态框*******************************************/
+.modal-box {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    background: rgba(0, 0, 0, .7);
+    display: none;
+    opacity: 0;
+    z-index: 1000;
+}
+
+.modal-body {
+    position: relative;
+    width: 492px;
+    margin: 0 auto;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fff;
+    z-index: 2000;
+}
+
+#topMsg {
+    opacity: 0;
+    position: absolute;
+    top: 10px;
+    left: 46px;
+    width: 400px;
+    height: 22px;
+    line-height: 22px;
+    text-align: center;
+    font-size: 13px;
+    color: #fcfcfc;
+    background: #3cba6f;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.m-head {
+    height: 40px;
+    padding: 0 20px;
+    background: #00a4f4;
+}
+
+.m-head span.wel {
+    display: inline-block;
+    line-height: 40px;
+    color: #fcfcfc;
+}
+
+.m-head span.close-icon {
+    display: inline-block;
+    position: relative;
+    float: right;
+    width: 24px;
+    height: 24px;
+    margin-top: 8px;
+    border-radius: 50%;
+    cursor: pointer;
+    background: rgba(0, 0, 0, .3);
+    -webkit-transition: .2s;
+    transition: .2s;
+}
+
+.m-head span.close-icon:before,
+.m-head span.close-icon:after {
+    content: '';
+    position: absolute;
+    top: 11px;
+    left: 0;
+    display: inline-block;
+    width: 14px;
+    height: 2px;
+    margin: 0 5px;
+    background: #fff;
+}
+
+.m-head span.close-icon:before {
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.m-head span.close-icon:after {
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+.m-head span.close-icon:hover {
+    background: rgba(0, 0, 0, .5);
+    -webkit-transition: .2s;
+    transition: .2s;
+}
+
+.m-content {
+    position: relative;
+    padding: 35px 60px 0;
+}
+
+.m-content a {
+    font-size: 12px;
+    color: #5b8bc3;
+}
+
+.m-content a:hover {
+    text-decoration: underline;
+}
+
+.m-content p {
+    font-size: 12px;
+}
+
+.m-content label {
+    float: left;
+    font-size: 12px;
+    color: #5b8bc3;
+    cursor: pointer;
+}
+
+.m-content label input {
+    position: relative;
+    top: 2px;
+}
+
+form input.txt-box {
+    float: left;
+    width: 235px;
+    height: 38px;
+}
+
+.m-content > form > div {
+    min-height: 40px;
+    line-height: 50px;
+    text-align: center;
+}
+
+.m-content div.less {
+    line-height: 40px;
+}
+
+.com-btn {
+    width: 240px;
+    height: 34px;
+    line-height: 34px;
+    margin-top: 4px;
+    background: #416eaf;
+    border-radius: 20px;
+    border: none;
+    font-size: 14px;
+    outline: none;
+    color: #f4ffff;
+    cursor: pointer;
+    -webkit-transition: .2s;
+    transition: .2s;
+}
+
+.com-btn:hover {
+    background: #31588E;
+    -webkit-transition: .2s;
+    transition: .2s;
+}
+
+#register:disabled,
+#loginBtn:disabled,
+#resBtn:disabled {
+    background: gray;
+    cursor: default;
+}
+
+.register-form,
+.find-pwd {
+    display: none;
+}
+
+.inp-box {
+    height: 40px;
+    border: 1px solid #ddd;
+}
+
+.inp-box.m-b {
+    margin-bottom: 20px;
+}
+
+.inp-box span.reg-title {
+    display: inline-block;
+    float: left;
+    width: 70px;
+    line-height: 40px;
+    margin-right: 5px;
+    padding: 0 15px;
+    font-size: 14px;
+    color: #000;
+    text-align: justify;
+    text-align-last: justify;
+}
+
+.modal-box .hide {
+    visibility: hidden;
+}
+
+form div p.def {
+    height: 16px;
+    line-height: 16px;
+    padding: 3px 5px;
+    margin: 5px 10px;
+    font-size: 12px;
+    text-align: left;
+    color: #777;
+    border-radius: 3px;
+}
+
+form div p.err {
+    color: #ee2222;
+}
+
+form div p.succ {
+    color: #90b71b;
 }
 
 

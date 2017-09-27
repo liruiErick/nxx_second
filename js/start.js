@@ -2,7 +2,7 @@
 
     var SPA_RESOLVE_INIT = function (hashData) {
 
-        // console.log('开始执行indexStart.js');
+        // console.log('开始执行 indexStart.js');
 
         indexStart(hashData);
 

@@ -1,18 +1,18 @@
 (function () {
+
     var SPA_RESOLVE_INIT = function (hashData) {
 
-        console.log('开始执行indexShareRes.js');
+        console.log('开始执行 myUpload.js');
 
-        indexShareRes(hashData);
+        myUpload(hashData);
 
     };
 
-    function indexShareRes(hashData) {
+    function myUpload(hashData) {
 
         // console.log(hashData);
 
         // do something
-
 
 
     }

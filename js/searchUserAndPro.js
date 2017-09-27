@@ -1,13 +1,14 @@
 (function () {
+
     var SPA_RESOLVE_INIT = function (hashData) {
 
-        console.log('开始执行indexShareRes.js');
+        console.log('开始执行 searchUserAndPro.js');
 
-        indexShareRes(hashData);
+        searchUserAndPro(hashData);
 
     };
 
-    function indexShareRes(hashData) {
+    function searchUserAndPro(hashData) {
 
         // console.log(hashData);
 

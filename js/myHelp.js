@@ -1,13 +1,14 @@
 (function () {
+
     var SPA_RESOLVE_INIT = function (hashData) {
 
-        console.log('开始执行indexShareRes.js');
+        // console.log('开始执行 myHelp.js');
 
-        indexShareRes(hashData);
+        myHelp(hashData);
 
     };
 
-    function indexShareRes(hashData) {
+    function myHelp(hashData) {
 
         // console.log(hashData);
 

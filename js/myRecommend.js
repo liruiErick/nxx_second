@@ -1,18 +1,18 @@
 (function () {
+
     var SPA_RESOLVE_INIT = function (hashData) {
 
-        console.log('开始执行indexShareRes.js');
+        // console.log('开始执行 myRecommend.js');
 
-        indexShareRes(hashData);
+        myRecommend(hashData);
 
     };
 
-    function indexShareRes(hashData) {
+    function myRecommend(hashData) {
 
         // console.log(hashData);
 
         // do something
-
 
 
     }

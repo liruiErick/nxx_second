@@ -21,9 +21,15 @@ button {
     outline: none;
 }
 
+select,
 input {
     border: 0;
     outline: none;
+}
+
+textarea {
+    outline: none;
+    resize: none;
 }
 
 .fl {
@@ -118,7 +124,7 @@ header > nav a.logo img {
     height: 50px;
 }
 
-header > nav ul li {
+header > nav ul.menu li {
     float: left;
     /*width: 300px;*/
     padding: 0 20px;
@@ -128,61 +134,53 @@ header > nav ul li {
     transition: .2s;
 }
 
-header > nav ul li.active {
+header > nav ul.menu li.active {
     /*background: #316CD8;*/
 }
 
-header > nav ul li:not(.active):hover {
+header > nav ul.menu li:not(.active):hover {
     /*background: #508BFA;*/
     /*transition: .2s;*/
 }
 
-header > nav ul li a {
+header > nav ul.menu li a {
     width: 100%;
     font-size: 1.05rem;
     color: #4d555d;
     transition: .2s;
 }
 
-header > nav ul li a:hover {
+header > nav ul.menu li a:hover {
     color: #000;
     transition: .2s;
 }
 
-header > nav .header-ser {
+header > nav .header-help {
     position: relative;
-    width: 270px;
-    height: 45px;
-    margin: 14px 0 14px 30px;
-    padding: 0 30px 0 2px;
-    border-bottom: 1px solid #4284F5;
+    width: 70px;
+    height: 46px;
+    margin: 14px 20px 14px 10px;
 }
 
-header > nav .header-ser input {
+header > nav .header-help a {
     float: left;
     width: 100%;
-    height: 29px;
-    padding: 8px 0;
-    outline: none;
+    height: 23px;
+    line-height: 23px;
     text-align: center;
+    font-size: 13px;
     color: #71777d
 }
 
-header > nav .header-ser .search-icon {
-    position: absolute;
-    width: 25px;
-    height: 25px;
-    right: 5px;
-    top: 10px;
-    background: url("../images/header_ser.png") no-repeat;
-    background-size: cover;
+header > nav .header-help a:hover {
+    color: #0082DF;
 }
 
 header > nav .login-box {
     padding: 0 12px;
 }
 
-header > nav .login-box a {
+header > nav .login-box a.user-btn {
     padding: 0 13px;
     line-height: 74px;
     font-size: 14px;
@@ -193,8 +191,74 @@ header > nav .login-box span {
     color: #d9dde1;
 }
 
-header > nav .login-box a:hover {
+header > nav .login-box a.user-btn:hover {
     color: #D32F24;
+}
+
+header > nav .login-box .user-box {
+    height: 34px;
+    margin: 20px 0;
+    font-size: 14px;
+    position: relative;
+}
+
+header > nav .login-box .user-box a.user-name {
+    min-width: 85px;
+    max-width: 98px;
+    line-height: 34px;
+    padding: 0 20px 0 0;
+    color: #555;
+    position: relative;
+    transition: .2s;
+}
+
+header > nav .login-box .user-box a.user-name:hover {
+    color: #333;
+    transition: .2s;
+}
+
+header > nav .login-box .user-box a.user-name:after {
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    box-sizing: border-box;
+    border: 5px solid transparent;
+    border-top-color: #bbb;
+    position: absolute;
+    right: 2px;
+    top: 14px;
+    transition: .2s;
+}
+
+header > nav .login-box .user-box a.user-name:hover:after {
+    border-top-color: #d44e60;
+    transition: .2s;
+}
+
+header > nav .login-box .user-box ul {
+    display: none;
+    width: 100%;
+    text-align: center;
+    background: #fff;
+    box-shadow: 1px 1px 5px #d1d1d1;
+    position: absolute;
+    top: 34px;
+}
+
+header > nav .login-box .user-box ul li a {
+    width: 100%;
+    line-height: 32px;
+    font-size: 13px;
+}
+
+header > nav .login-box .user-box ul li a:hover {
+    background: #3388ff;
+    color: #fff;
+}
+
+header > nav .login-box .user-box:hover ul {
+    display: block;
 }
 
 p.no-msg {
@@ -260,3 +324,55 @@ footer {
 .big-title.pol-reg {
     background: url("../images/pol_reg.png") 135px 5px no-repeat;
 }
+
+/************************************ icon ***************************************/
+.a-icon {
+    position: relative;
+    padding-left: 30px;
+}
+
+.a-icon:before {
+    content: '';
+    display: inline-block;
+    position: absolute;
+}
+
+.a-icon-center:before {
+    left: 0;
+    top: 5px;
+    width: 20px;
+    height: 20px;
+    background: url("../images/icon_center.png") no-repeat;
+    background-size: cover;
+}
+
+.a-icon-area:before {
+    left: 0;
+    top: 5px;
+    width: 20px;
+    height: 20px;
+    background: url("../images/icon_area.png") no-repeat;
+    background-size: cover;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
