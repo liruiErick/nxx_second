@@ -11,29 +11,29 @@
 
     'use strict';
 
-    var document = window.document,
+    var document = window.document,//获取document对象
 
         version = '1.0.1',
 
-        serverInfo = 'http://10.0.0.21:8080/axis2/services/KbmsService/',
+        serverInfo = 'http://10.0.0.21:8080/axis2/services/KbmsService/',//接口地址
 
-        regTrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,
+        regTrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,//去除两端空格正则
 
-        regClass = /^\.\S+$/g,
+        regClass = /^\.\S+$/g,//刷选class正则
 
-        regId = /^#\S+$/g;
+        regId = /^#\S+$/g;//筛选id正则
 
-    var hj = function (I) {
+    var hj = function (I) {//获取hj对象
         return new hj.fn.Init(I)
     };
 
-    hj.fn = hj.prototype = {
+    hj.fn = hj.prototype = {//fn共享hj的原型链
 
         hj: version,
 
         constructor: hj,
 
-        each: function (fn) {
+        each: function (fn) {//相当于jquery的each函数,这里只是处理了参数为函数的对象
             for (var i = 0, len = this.length; i < len; i++) {
                 fn(this[i])
             }
@@ -50,7 +50,7 @@
          * 调用时要确保事件不会重复绑定！！！如果无法避免请直接使用 jQuery
          *
          */
-        on: function (event, fn) {
+        on: function (event, fn) {//绑定事件
             if (utils.paraType(event) === '[object String]' && utils.paraType(fn) === '[object Function]') {
                 return this.each(function (_this) {
                     _this.addEventListener(event, fn)
@@ -59,7 +59,7 @@
             return this
         },
 
-        off: function (event, fn) {
+        off: function (event, fn) {//解除绑定事件
             if (utils.paraType(event) === '[object String]' && utils.paraType(fn) === '[object Function]') {
                 return this.each(function (_this) {
                     _this.removeEventListener(event, fn)
@@ -68,7 +68,7 @@
             return this
         },
 
-        tabSwitch: function () {
+        tabSwitch: function () {//tab框切换组件，两种类型的tab框切换 一种切换按钮时a标签 另一种是li标签
             this.each(function (_this) {
                 var b_box = null,
                     t_box = null,
@@ -89,29 +89,29 @@
                     s_tab = t_box.getElementsByClassName('card-item');
                     len = s_btn.length;
                 }
-
+                //切换标签添上索引属性，建立切换之间的联动关系
                 for (; i < len; i++) {
                     s_btn[i].tabIndex = i
                 }
 
                 for (i = 0; i < len; i++) {
 
-                    s_btn[i].onclick = function () {
+                    s_btn[i].onclick = function () {//对每个切换标签绑定点击事件
 
                         var this_class = this.className;
 
-                        if (this_class.indexOf('active') === -1) {
+                        if (this_class.indexOf('active') === -1) {//当前切换标签不存在active属性
 
                             var will_show_tab = s_tab[this.tabIndex],
-                                this_show_class = will_show_tab ? will_show_tab.className : '',
+                                this_show_class = will_show_tab ? will_show_tab.className : '',//获取将要显示内容的dom对象
 
-                                b_s = hj.siblings(this),
-                                t_s = will_show_tab ? hj.siblings(will_show_tab) : [];
+                                b_s = hj.siblings(this),//获取切换标签兄弟节点对象
+                                t_s = will_show_tab ? hj.siblings(will_show_tab) : [];//获取将要显示的内容的兄弟对象
 
-                            this.setAttribute('class', ((this_class) ? this_class + ' ' : '') + 'active');
-                            hj.removeClass(b_s, 'active');
+                            this.setAttribute('class', ((this_class) ? this_class + ' ' : '') + 'active');//设置当前切换标签的active类
+                            hj.removeClass(b_s, 'active');//去除其兄弟节点的active类
 
-                            if (this_show_class) {
+                            if (this_show_class) {//设置显示内容的active类及兄弟的active的类
 
                                 hj.removeClass(t_s, 'show');
                                 will_show_tab.setAttribute('class', this_show_class + ' show')
@@ -126,7 +126,7 @@
         }
     };
 
-    var Init = hj.fn.Init = function (I) {
+    var Init = hj.fn.Init = function (I) {//共享Init方法
 
         if (!I) {
             return this
@@ -147,7 +147,7 @@
 
     };
 
-    hj.extend = hj.fn.extend = function () {
+    hj.extend = hj.fn.extend = function () {//把extend对象中方法挂载到hj上
         var len = arguments.length,
             i = 1,
             target = arguments[0] || {};
@@ -171,11 +171,11 @@
         }
 
         return target
-    };
+    };//共享extend方法
 
     hj.loadUrl = serverInfo;
 
-    hj.loadXML = function (xmlStr) {
+    hj.loadXML = function (xmlStr) {//解析xml为json
         var obj = new DOMParser().parseFromString(xmlStr, 'text/xml') || new ActiveXObject('Microsoft.XMLDOM'),
             str = obj.documentElement ? obj.documentElement.textContent : obj.loadXML(xmlStr);
         if (obj.async) {
@@ -198,7 +198,7 @@
             console.warn('The Ajax request link cannot be empty');
             return
         }
-        option.type = option.type.toLowerCase() || 'get';
+        option.type = option.type ? option.type.toLowerCase() : 'get';
         option.data = option.data || null;
         // option.dataType = option.dataType || 'text';
         option.async = option.async || true;
@@ -237,11 +237,40 @@
 
     };
 
-    hj.checkLogin = function (userData, fn) {
-        // TODO: 调接口检查登录
+    hj.getUserData = function () {
+        var cn = this.getCookie('identify');
+        var cc = this.getCookie('key_code');
+        var ln = localStorage['identify'];
+        var lc = localStorage['key_code'];
+        if ((cn && cc) || (ln && lc)) {
+            return {
+                'name': cn || ln,
+                'decodeName': decodeURIComponent(cn || ln),
+                'key_code': cc || lc
+            }
+        } else {
+            return ''
+        }
+    };
 
-        // fn(true)
-        fn(true)
+    hj.checkLogin = function (userData, fn) {
+        // console.log(userData);
+        this.ajax({
+            type: 'post',
+            url: this.loadUrl + 'login',
+            data: {
+                'user': userData.decodeName,
+                'password': userData.key_code
+            },
+            success: function (res) {
+                res = hj.loadXML(res);
+                if (res === 0) {
+                    fn(true)
+                } else {
+                    fn(false)
+                }
+            }
+        })
     };
 
     hj.setCookie = function (data) {
@@ -295,7 +324,7 @@
     hj.clearUserInfo = function (fn) {
         this.removeCookie();
         localStorage.clear();
-        fn()
+        fn ? fn() : null
     };
 
     hj.getToken = function (strMd5) {
@@ -312,6 +341,54 @@
             }
             return data[p2]
         })
+    };
+
+    hj.TemplateEngine = function (options) {
+        var el = document.getElementById(options.el),
+            temp = document.getElementById(options.temp).innerHTML,
+            data = options.data || [],
+            index = 0,
+            _function = "var html = '';",
+            matcher = /<%=([\s\S]+?)%>|<%([\s\S]+?)%>|$/g;
+
+        function filterHTML(source) {
+            return String(source)
+                .replace(/\\/g, "")
+                .replace(/'/g, "'")
+                .replace(/\r/g, "")
+                .replace(/\n/g, "")
+                .replace(/\t/g, "")
+                .replace(/\u2028/g, "\\u2028")
+                .replace(/\u2029/g, "\\u2029")
+        }
+
+        _function += "html += '";
+
+        temp.replace(matcher, function (match, interpolate, eveluate, offset) {
+            var tmp = filterHTML(temp.slice(index, offset)).replace(/\s+/g, ' ').trim();
+
+            if (tmp) {
+                _function += tmp
+            }
+            if (eveluate) {
+                _function += "';" + eveluate + "html += '"
+            }
+            if (interpolate) {
+                _function += "' + " + interpolate + " + '"
+            }
+            index = offset + match.length
+        });
+
+        _function += "'; return html;";
+
+        var func = new Function('data', _function);
+
+        // console.log(func(data));
+
+        el.innerHTML = func(data);
+
+        options.callback ? options.callback() : null
+
     };
 
     hj.md5 = function (string) {
@@ -511,7 +588,7 @@
                 }
             }
         },
-        siblings: function (elem) {
+        siblings: function (elem) {//获取兄弟节点
             var r = [];
             var n = elem.parentNode.firstChild;
             for (; n; n = n.nextSibling) {
@@ -567,11 +644,11 @@
             return target
         },
 
-        paraType: function (para) {
+        paraType: function (para) {//获取参数类型
             return Object.prototype.toString.call(para)
         },
 
-        isEmptyObject: function (obj) {
+        isEmptyObject: function (obj) {//判断对象是否是对象
             var t;
             for (t in obj) {
                 return false;
@@ -579,7 +656,7 @@
             return true;
         },
 
-        handleAjaxData: function (dataObj) {
+        handleAjaxData: function (dataObj) {//把ajax的data属性修改成a=2&b=3的格式
             var key,
                 arr = [];
             for (key in dataObj) {
@@ -589,9 +666,9 @@
         }
     };
 
-    Init.prototype = hj.fn;
+    Init.prototype = hj.fn;//Init与fn共享原型链
 
-    window.hj = hj;
+    window.hj = hj;//hj对象挂载到document上
 
     return hj
 
@@ -607,7 +684,7 @@
 
 })(window, function ($, plug) {
 
-    var __DEFAULTS__ = {
+    var __DEFAULTS__ = {//默认配置
         trigger: 'keyup',   // 默认验证触发 keyup 事件
         errMsg: '无效的值',  // 默认错误提示信息
         submitType: 'ajax', // 提交方式 'ajax' || 'normal'
@@ -615,8 +692,8 @@
         submitBtn: null
     };
 
-    var __PROTOTYPE__ = {
-        _submit: function (fn) {
+    var __PROTOTYPE__ = { //获取注册内容
+        _submit: function (fn, btn) {
             var err = this.$I.trigger(this.trigger).filter('.err').length,
                 data = {};
             if (err === 0) {
@@ -624,6 +701,8 @@
                     data[this.itemKey[i]] = $(this.itemKey[i]).val();
                 }
                 fn(data)
+            } else {
+                btn.disabled = false
             }
         },
         _normalSubmit: function () {
@@ -631,7 +710,7 @@
         }
     };
 
-    var __RULES__ = {
+    var __RULES__ = { //验证内容
         'required': function () { // 验证是否为空
             return this.val() !== ''
         },
@@ -649,7 +728,7 @@
 
         $.extend(this, __DEFAULTS__, options, __PROTOTYPE__);
 
-        if (this.item) {
+        if (this.item) { //设置注册dom、内容
             var sel,
                 tmp = [];
             for (sel in this.item) {
@@ -663,7 +742,7 @@
 
         // console.log(this);
 
-        this.$I.on(this.trigger, function () {
+        this.$I.on(this.trigger, function () { //设置验证内容
 
             var $this = $(this).removeClass('succ err');
 
@@ -671,7 +750,7 @@
 
             var result = true;
 
-            $.each(__RULES__, function (rule, func) {
+            $.each(__RULES__, function (rule, func) { //设置验证方式
                 var item = _this.item['#' + $this[0].id];
                 if (item[rule]) {
                     result = func.call($this, item[rule]);
@@ -690,9 +769,11 @@
         });
 
         // 提交
-        $(this.submitBtn.btn).on('click', function () {
-            this.disabled = true;
-            _this._submit(_this.submitBtn.fn);
+        $(this.submitBtn.btn).on('click', function (e) {
+            var btn = this;
+            e.preventDefault();
+            btn.disabled = true;
+            _this._submit(_this.submitBtn.fn, btn);
         })
 
     }

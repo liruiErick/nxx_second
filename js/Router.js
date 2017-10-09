@@ -3,11 +3,11 @@
     'use strict';
 
     var routerFn = {
-        paraType: function (para) {
+        paraType: function (para) { //获取类型
             return Object.prototype.toString.call(para)
         },
 
-        getUrlMas: function (key) {
+        getUrlMas: function (key) { //获取url的信息
             var hashDetail = location.hash.split('?'),
                 hashName = hashDetail[0].split('#' + key)[1],
                 params = hashDetail[1] ? hashDetail[1].split('&') : [],
@@ -30,6 +30,7 @@
         this.key = '';          // 默认规则 - String
         this.beforeJump = null; // 跳转之前 - Function
         this.afterJump = null;  // 跳转之后 - Function
+        this.hash = [];         // 保存当前 hash 和前一个 hash
 
     }
 
@@ -38,11 +39,9 @@
         init: function () {
             var self = this;
             window.addEventListener('load', function () {
-                // console.log('load');
                 self.urlChange()
             });
             window.addEventListener('hashchange', function () {
-                // console.log('hash-change');
                 self.urlChange()
             });
             // 异步引入的js通过回调传参
@@ -51,8 +50,11 @@
 
         urlChange: function () {
             var hashData = routerFn.getUrlMas(this.key);
-            // console.log(hashData);
             if (this.hashList[hashData.path]) {
+                this.hash.push(hashData.path);
+                if (this.hash.length > 2) {
+                    this.hash.shift()
+                }
                 this.refresh(hashData)
             } else {
                 location.hash = this.key + this.index
@@ -63,6 +65,9 @@
             var self = this;
             if (self.beforeJump) {
                 self.beforeJump({
+                    from: {
+                        path: this.hash[0]
+                    },
                     to: {
                         path: hashData.path,
                         query: hashData.query

@@ -84,8 +84,9 @@
                 <div>
                     <div class="inp-box">
                         <span class="reg-title">部门</span>
-                        <input class="txt-box" id="reg_part" onfocus="this.placeholder=''"
-                               onblur="this.placeholder='请输入所在部门'" placeholder="请输入所在部门" required>
+                        <select name="department" id="department">
+                            <option value="">--请选择--</option>
+                        </select>
                     </div>
                     <p class="def hide"></p>
                 </div>
@@ -151,9 +152,40 @@
         </div>
     </div>
 </div>
+<div id="modalDialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="fl">选择用户</h4>
+            <span class="close-icon" id="mCloseBtn"></span>
+        </div>
+        <div class="body" id="mdBody"></div>
+        <div class="modal-footer">
+            <a class="confirm" href="javascript:void(0);">确认</a>
+        </div>
+    </div>
+</div>
 <footer class="max-width">
     <p class="com-width footer-box">Copyright© 工业与信息化产业信息公共服务平台</p>
 </footer>
+<script id="userListTpl" type="text/html">
+    <ul>
+        <%for(var i = 0; i < data.length; i++){%>
+        <li>
+            <div class="head">
+                <a class="part" href="javascript:void(0);"><%=data[i].name%></a>
+                <label class="all"><input class="chk-all" type="checkbox">全选</label>
+            </div>
+            <div class="con">
+                <%if(data[i].user.length == 0){%>
+                <p>没有查询到数据！</p>
+                <%}else{for(var j = 0; j < data[i].user.length; j++){%>
+                <label><input type="checkbox" value="<%=data[i].user[j].username%>"><%=data[i].user[j].username%></label>
+                <%}}%>
+            </div>
+        </li>
+        <%}%>
+    </ul>
+</script>
 <script src="js/jquery-2.2.4.js"></script>
 <script src="js/layer/layer.js"></script>
 <script src="js/Common.js"></script>

@@ -83,8 +83,53 @@
     background-size: cover;
 }
 
+/*********************************** close-icon *******************************************/
+span.close-icon {
+    display: inline-block;
+    position: relative;
+    float: right;
+    width: 24px;
+    height: 24px;
+    margin-top: 8px;
+    border-radius: 50%;
+    cursor: pointer;
+    background: rgba(0, 0, 0, .3);
+    -webkit-transition: .2s;
+    transition: .2s;
+}
 
+span.close-icon:before,
+span.close-icon:after {
+    content: '';
+    position: absolute;
+    top: 11px;
+    left: 0;
+    display: inline-block;
+    width: 14px;
+    height: 2px;
+    margin: 0 5px;
+    background: #fff;
+}
 
+span.close-icon:before {
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+span.close-icon:after {
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+span.close-icon:hover {
+    background: rgba(0, 0, 0, .5);
+    -webkit-transition: .2s;
+    transition: .2s;
+}
+
+#mCloseBtn {
+    margin: 0;
+}
 
 
 

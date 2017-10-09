@@ -292,49 +292,6 @@ div.tab-content > div.show {
     color: #fcfcfc;
 }
 
-.m-head span.close-icon {
-    display: inline-block;
-    position: relative;
-    float: right;
-    width: 24px;
-    height: 24px;
-    margin-top: 8px;
-    border-radius: 50%;
-    cursor: pointer;
-    background: rgba(0, 0, 0, .3);
-    -webkit-transition: .2s;
-    transition: .2s;
-}
-
-.m-head span.close-icon:before,
-.m-head span.close-icon:after {
-    content: '';
-    position: absolute;
-    top: 11px;
-    left: 0;
-    display: inline-block;
-    width: 14px;
-    height: 2px;
-    margin: 0 5px;
-    background: #fff;
-}
-
-.m-head span.close-icon:before {
-    -webkit-transform: rotate(45deg);
-    transform: rotate(45deg);
-}
-
-.m-head span.close-icon:after {
-    -webkit-transform: rotate(-45deg);
-    transform: rotate(-45deg);
-}
-
-.m-head span.close-icon:hover {
-    background: rgba(0, 0, 0, .5);
-    -webkit-transition: .2s;
-    transition: .2s;
-}
-
 .m-content {
     position: relative;
     padding: 35px 60px 0;
@@ -437,6 +394,13 @@ form input.txt-box {
     text-align-last: justify;
 }
 
+.inp-box select {
+    float: left;
+    width: 250px;
+    height: 40px;
+    margin-right: 10px;
+}
+
 .modal-box .hide {
     visibility: hidden;
 }
@@ -460,7 +424,150 @@ form div p.succ {
     color: #90b71b;
 }
 
+/********************************* @模块 ****************************************/
+#modalDialog {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, .7);
+}
 
+#modalDialog .modal-content {
+    width: 900px;
+    margin: 100px auto 0;
+    background: #fff;
+    padding: 10px 15px;
+    border-radius: 4px;
+}
+
+#modalDialog .modal-content .modal-header {
+    height: 30px;
+    line-height: 30px;
+}
+
+#modalDialog .modal-content .body {
+    width: 100%;
+    max-height: 480px;
+    margin: 10px 0;
+    border-top: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+    overflow-y: auto;
+}
+
+#modalDialog label,
+#modalDialog input {
+    cursor: pointer;
+}
+
+.body ul li {
+    box-sizing: border-box;
+    padding: 5px 10px;
+}
+
+.body ul li:last-child {
+    padding: 5px 10px 15px;
+}
+
+.body ul li div.head {
+    padding: 10px 0;
+    margin: 0 15px;
+    border-bottom: 1px solid #ccc;
+}
+
+.body ul li div.head a.part {
+    height: 24px;
+    line-height: 24px;
+    color: #fff;
+    background: #449d44;
+    padding: 0 22px 0 10px;
+    font-size: 13px;
+    text-align: center;
+    position: relative;
+}
+
+.body ul li div.head a.part:before {
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 2px;
+    background: #fff;
+    position: absolute;
+    top: 11px;
+    right: 6px;
+}
+
+.body ul li div.head a.part:after {
+    content: '';
+    display: inline-block;
+    width: 2px;
+    height: 10px;
+    background: #fff;
+    position: absolute;
+    top: 7px;
+    right: 10px;
+}
+
+.body ul li div.head a.part.active:after {
+    display: none;
+}
+
+.body ul li div.head label.all {
+    margin-left: 15px;
+    font-size: 13px;
+}
+
+.body ul li div.head label.all input {
+    position: relative;
+    top: 1px;
+}
+
+.body ul li div.con {
+    margin: 6px 15px;
+    border-bottom: 1px dashed #ccc;
+    line-height: 30px;
+    max-height: 90px;
+    overflow-y: auto;
+    display: none;
+}
+
+.body ul li div.con.show {
+    display: block;
+}
+
+.body ul li div.con label {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.body ul li div.con label input {
+    position: relative;
+    top: 1px;
+}
+
+.body ul li div.con p {
+    text-align: center;
+    line-height: 60px;
+    color: #666;
+}
+
+.modal-footer {
+    padding: 10px 10px 0;
+    text-align: right;
+}
+
+.modal-footer a {
+    display: inline-block;
+    border: 0;
+    padding: 5px 15px;
+    border-radius: 4px;
+    background: #9d142a;
+    color: #fff;
+    font-size: 13px;
+}
 
 
 

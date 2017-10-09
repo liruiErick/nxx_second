@@ -192,43 +192,29 @@
 
     });
 
-
-    // HjRouter.beforeJump(function () {
-    //
-    // });
+    HjRouter.beforeLoad(function (msg) {
+        // console.log(msg);
+        var self = this;
+        if (msg.to.path.indexOf('needHelp') !== -1) {
+            var tmp = hj.getUserData();
+            if (!tmp) {
+                layer.msg("请先登陆！", {time: 2000}, function () {
+                    $('.user-btn')[0].click();
+                });
+                $('#closeBtn').click(function () {
+                    msg.from.path === msg.to.path ? location.hash = '' : location.hash = self.key + msg.from.path
+                })
+            } else {
+                msg.next()
+            }
+        } else {
+            msg.next()
+        }
+    });
 
     HjRouter.setIndex('start');
     HjRouter.key = '!';
     HjRouter.init();
-
-
-    window.hjUtils = {
-        topSearchBindClick: function () {
-
-            // TODO: 点击搜索按钮抓取信息
-
-            var box = $('#color-switch');
-
-            box.find('.ser-tab a').click(function () {
-                box.attr('class', $(this).data('color'));
-                $(this).addClass('checked').siblings().removeClass('checked');
-            })
-
-        }
-
-    };
-
-    // hj.setCookie({
-    //     'identify': {
-    //         value: encodeURIComponent('蒙大拿')
-    //     },
-    //     'key_code': {
-    //         value: hj.md5('123456')
-    //     }
-    // });
-
-    // console.log('Abaaa'.toLowerCase());
-    // console.log({name:'666'}.length);
 
     var user_html = '<div class="user-box"><a class="user-name nowrap" href="javascript:void(0);">欢迎，{{decodeName}}</a><ul><li><a href="#!myHelp?key={{name}}" target="_blank">我的求助</a></li><li><a class="quit" href="javascript:void(0);">退出</a></li></ul></div>';
     var btn_html = '<a class="user-btn" data-msg="欢迎登录" data-class=".login-form" data-height="309" href="javascript:void(0);">登录</a><span>/</span><a class="user-btn" data-msg="欢迎注册" data-class=".register-form" data-height="535" href="javascript:void(0);">注册</a>';
@@ -239,24 +225,43 @@
     var modalTitle = $('#modalTitle');
     var closeBtn = $('#closeBtn');
     var toggle = $('.toggle');
+    var department = $('#department');
+    var modalDialog = $('#modalDialog');
 
     var loginBtn = $('#loginBtn');
     var regBtn = $('#register');
     var resetBtn = $('#resBtn');
 
-    var userData = {};
-    var cn = hj.getCookie('identify');
-    var cc = hj.getCookie('key_code');
-    var ln = localStorage['identify'];
-    var lc = localStorage['key_code'];
     var inHeight = 0;
 
-    if ((cn && cc) || (ln && lc)) {
-        userData = {
-            'name': cn || ln,
-            'decodeName': decodeURIComponent(cn || ln),
-            'key_code': cc || lc
-        };
+    // 获取部门列表和用户列表
+    (function () {
+        hj.ajax({
+            type: 'post',
+            url: hj.loadUrl + 'getDepartmentList',
+            success: function (res) {
+                var temp = '<option value="{{id}}">{{name}}</option>';
+                var html = '';
+                res = hj.loadXML(res);
+                // console.log(res);
+                for (var i = 0; i < res.length; i++) {
+                    html += hj.template(res[i], temp)
+                }
+                department.append(html);
+
+                new hj.TemplateEngine({
+                    el: 'mdBody',
+                    temp: 'userListTpl',
+                    data: res,
+                    callback: bindEventForUserList
+                });
+            }
+        })
+    })();
+
+    // 自动登录
+    var userData = hj.getUserData();
+    if (userData) {
         hj.checkLogin(userData, function (msg) {
             if (msg) {
                 loginBox.innerHTML = hj.template(userData, user_html);
@@ -264,9 +269,10 @@
                 loginBox.getElementsByClassName('quit')[0].onclick = function () {
                     hj.clearUserInfo(reset);
                     window.location.href = '' // 重载并返回首页
-                }
+                };
             } else {
                 hj.clearUserInfo(reset);
+                layer.msg('登录失败，请重新登录！', {time: 2000})
             }
         })
     } else {
@@ -287,10 +293,11 @@
     }
 
     // 关闭模态框
-    closeBtn.click(function () {
+    closeBtn.off().click(function () {
         modalBox.animate({opacity: 0}, 'fast').hide('fast');
         modalBody.animate({top: 0}, 'fast');
         modalBody.find('input').val('');
+        department.val('');
         loginBtn[0].disabled = false;
         regBtn[0].disabled = false;
         resetBtn[0].disabled = false;
@@ -308,7 +315,7 @@
         modalTitle.html($(this).data('msg'));
     });
 
-    // 模态框顶部信息展示
+    // 模态框顶部信息提示
     function showTipMsg(msg, time, obj, fn) {
         topMsg.html(msg).stop().animate({opacity: 1, top: '40px'}, 200).show(200);
         setTimeout(function () {
@@ -325,8 +332,9 @@
         }
     }
 
-
+    // 注册表单验证
     $('#regForm').hjForm({
+        trigger: 'input',
         item: {
             '#reg_name': {
                 'required': true,
@@ -340,7 +348,7 @@
                 'regexp': /^((0\d{2,3}-?)?\d{7,8}|(\+86|0086)?\s*1[34578]\d{9})$/,
                 'regexp-msg': '请输入正确的电话号码'
             },
-            '#reg_part': {
+            '#department': {
                 'required': true,
                 'required-msg': '部门不能为空'
             },
@@ -362,6 +370,7 @@
         submitBtn: {
             btn: '#register',
             fn: function (data) {
+                // console.log(data);
                 hj.ajax({
                     type: 'post',
                     url: hj.loadUrl + 'addUser',
@@ -369,14 +378,15 @@
                         'user': data['#reg_name'],
                         'password': hj.md5(data['#reg_dou_pwd']),
                         'tel': data['#reg_tel'],
-                        'department': data['#reg_part']
+                        'department': data['#department']
                     },
                     success: function (res) {
                         res = hj.loadXML(res);
                         if (res) {
                             showTipMsg('注册成功！', 2000, regBtn, function () {
                                 $('.reg-login').click();
-                                modalBody.find('input').val('')
+                                modalBody.find('input').val('');
+                                department.val('');
                             })
                         } else {
                             showTipMsg('注册失败，该用户名已存在！', 4000, regBtn)
@@ -387,7 +397,7 @@
         }
     });
 
-    //登陆
+    // 登陆
     loginBtn.click(function (e) {
         e.stopPropagation();
         e.preventDefault();
@@ -406,7 +416,7 @@
                 success: function (res) {
                     res = hj.loadXML(res);
                     if (res === 0) {
-                        showTipMsg('欢迎回来！', 3000, '', function () {
+                        showTipMsg('欢迎回来！', 1500, '', function () {
                             if (chk) {
                                 localStorage['identify'] = encodeURIComponent(user);
                                 localStorage['key_code'] = hj.md5(pass);
@@ -423,13 +433,14 @@
                             location.reload();
                         })
                     } else {
-                        showTipMsg((res === 1) ? '登陆失败！' : '登陆失败，该用户名不存在！', 3000, loginBtn);
+                        showTipMsg((res === 1) ? '登陆失败，请检查用户名或密码！' : '登陆失败，该用户名不存在！', 2000, loginBtn);
                     }
                 }
             })
         }
     });
-    //修改密码
+
+    // 修改密码
     resetBtn.click(function (e) {
         e.stopPropagation();
         e.preventDefault();
@@ -461,6 +472,59 @@
             })
         }
     });
+
+    // @ 模态框关闭按钮
+    $("#mCloseBtn").click(function () {
+        modalDialog.hide();
+        $('#modalDialog').find("input[type='checkbox']").prop("checked", false)
+    });
+    // @ 模态框动态事件绑定
+    function bindEventForUserList() {
+        // 展开收缩事件
+        $('a.part').click(function (e) {
+            e.stopPropagation();
+            $(this).toggleClass('active').parent().siblings('.con').toggleClass('show');
+        });
+        // 全选
+        $(".chk-all").click(function () {
+            var _this = $(this);
+            if (_this[0].checked) {
+                _this.parents('.head').siblings('.con').find("input[type='checkbox']").prop("checked", true)
+            } else {
+                _this.parents('.head').siblings('.con').find("input[type='checkbox']").prop("checked", false)
+            }
+        });
+    }
+
+    window.hjUtils = {
+        topSearchBindClick: function () {
+
+            // TODO: 点击搜索按钮抓取信息
+
+            var box = $('#color-switch');
+
+            box.find('.ser-tab a').click(function () {
+                box.attr('class', $(this).data('color'));
+                $(this).addClass('checked').siblings().removeClass('checked');
+            })
+
+        },
+        getUserListData: function (fn) {
+            var data = [];
+            var tmp = $(".con").find("input[type='checkbox']");
+            tmp.each(function (index, item) {
+                if ($(item).prop("checked")) {
+                    data.push($(item).val())
+                }
+            });
+            modalDialog.find("input[type='checkbox']").prop("checked", false);
+            if (fn) {
+                fn(data.join(';'))
+            } else {
+                return data.join(';')
+            }
+        }
+    }
 
 })();
 
